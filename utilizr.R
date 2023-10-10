@@ -14,3 +14,4 @@ bestmatch <- function(select, against, ...) {
   tibble(var = select, mindist= foreach(i=1:length(var)) %dopar% {min(afind(against, var, ...)$distance[,i])} %>% unlist()) %>% filter(mindist == min(.$mindist)) %>% .$var
 }
 
+# 
