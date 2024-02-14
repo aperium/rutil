@@ -1,2 +1,2 @@
-importFrom("rvest","stringr","chromote", "dplyr", "foreach", "tibble", "magrittr", "doParallel", "stringdist")
+# importFrom("stringr","chromote", "dplyr", "foreach", "tibble", "magrittr", "doParallel", "stringdist")
 export(google_get_addresses, google_get_address, bestmatch)
