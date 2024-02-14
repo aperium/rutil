@@ -4,8 +4,6 @@
 #'  Date: 14 Feb 2024
 #'
 #' 
-## cran_packs <- c("stringr","chromote", "dplyr", "foreach", "tibble", "magrittr")
-
 
 
 #' quick using google to get the address from any text query. Works best if the query is a mostly complete address.

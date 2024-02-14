@@ -1,2 +1,2 @@
 importFrom("stats", "filter", "var")
-export(google_get_addresses, google_get_address, bestmatch)
+export(google_get_addresses, google_get_address)
