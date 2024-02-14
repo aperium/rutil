@@ -6,7 +6,20 @@
 \usage{
 google_get_address(query = NULL)
 }
+\arguments{
+\item{query}{A string or character vector containing the address to validate or complete}
+}
 \description{
+quick using google to get the address from any text query. Works best if the query is a mostly complete address.
+The plural version lets query be a list of strings. Internally reduce to unique queries and then re expand to same lenth as query for return.
+}
+\details{
 Author: Daniel R. Williams
  Date: 14 Feb 2024
 }
+\keyword{address}
+\keyword{google}
+\keyword{lookup}
+\keyword{scrape}
+\keyword{validate}
+\keyword{zip}

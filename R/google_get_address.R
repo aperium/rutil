@@ -16,18 +16,6 @@
 #' @param query A string or character vector containing the address to validate or complete
 #'
 
-
-
-google_get_address_single <- function(query = NULL) {
-  query <- query |> stringr::str_replace_all("[:space:]","*")
-  b <- chromote::ChromoteSession$new()
-  b$Page$navigate(paste0("https://www.google.com/search?q=",query,"*va&sclient=gws-wiz-serp"))
-  b$Page$loadEventFired()
-  x <- b$DOM$getDocument() %>% { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } %>% { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)")
-  b$close()
-  return(x)
-}
-
 google_get_address <- function(query = NULL) {
   query <- query |> stringr::str_replace_all("[:space:]","*")
   uniquery <- query |> stringr::str_unique()
@@ -45,3 +33,15 @@ google_get_address <- function(query = NULL) {
   b$close()
   return(results)
 }
+
+google_get_address_single <- function(query = NULL) {
+  query <- query |> stringr::str_replace_all("[:space:]","*")
+  b <- chromote::ChromoteSession$new()
+  b$Page$navigate(paste0("https://www.google.com/search?q=",query,"*va&sclient=gws-wiz-serp"))
+  b$Page$loadEventFired()
+  x <- b$DOM$getDocument() %>% { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } %>% { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)")
+  b$close()
+  return(x)
+}
+
+
