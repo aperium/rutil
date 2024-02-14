@@ -4,7 +4,7 @@
 \alias{google_get_address}
 \title{Google Get Address}
 \usage{
-google_get_address(query)
+google_get_address(query = NULL)
 }
 \description{
 Author: Daniel R. Williams
