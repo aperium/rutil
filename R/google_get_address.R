@@ -3,7 +3,8 @@
 #'  Author: Daniel R. Williams
 #'  Date: 14 Feb 2024
 #'
-#' cran_packs <- c("rvest","stringr","chromote", "dplyr", "foreach", "tibble")
+#' 
+cran_packs <- c("rvest","stringr","chromote", "dplyr", "foreach", "tibble", "magrittr")
 
 
 
@@ -14,7 +15,7 @@ google_get_address <- function(query) {
   b <- chromote::ChromoteSession$new()
   b$Page$navigate(paste0("https://www.google.com/search?q=",query,"*va&sclient=gws-wiz-serp"))
   b$Page$loadEventFired()
-  x <- b$DOM$getDocument() |> { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } |> { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)")
+  x <- b$DOM$getDocument() %>% { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } %>% { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)")
   b$close()
   return(x)
 }
@@ -28,7 +29,7 @@ google_get_addresses <- function(query) {
     b$Page$navigate(paste0("https://www.google.com/search?q=",uniquery[i],"*va&sclient=gws-wiz-serp"))
     b$Page$loadEventFired()
     x<-NA
-    try(x <- b$DOM$getDocument() |> { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } |> { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)"), silent = TRUE)
+    try(x <- b$DOM$getDocument() %>% { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } %>% { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)"), silent = TRUE)
     tibble::tibble_row(query=uniquery[i],result=x)
   } |>
     dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query"), by = dplyr::join_by(query)) |>
