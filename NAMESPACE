@@ -1,6 +1,7 @@
+export(google_get_addresses)
+export(google_get_address)
 importFrom("stats", "filter", "var")
 importFrom("magrittr", `%>%`)
 importFrom("foreach", `%do%`)
 importFrom("plyr", `.`)
 importFrom("rlang", ".data")
-export(google_get_addresses, google_get_address)
