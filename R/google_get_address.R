@@ -9,7 +9,7 @@
 
 #' quick using google to get the address from any text query. Works best if the query is a mostly complete address.
 #' The plural version lets query be a list of strings. Internally reduce to unique queries and then re expand to same lenth as query for return.
-google_get_address <- function(query) {
+google_get_address <- function(query = NULL) {
   query <- query |> stringr::str_replace_all("[:space:]","*")
   b <- chromote::ChromoteSession$new()
   b$Page$navigate(paste0("https://www.google.com/search?q=",query,"*va&sclient=gws-wiz-serp"))
@@ -19,7 +19,7 @@ google_get_address <- function(query) {
   return(x)
 }
 
-google_get_addresses <- function(query) {
+google_get_addresses <- function(query = NULL) {
   query <- query |> stringr::str_replace_all("[:space:]","*")
   uniquery <- query |> stringr::str_unique()
   tmp_join <- function(...) dplyr::full_join(..., by = dplyr::join_by(query, result))
