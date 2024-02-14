@@ -10,7 +10,3 @@ google_get_address(query = NULL)
 Author: Daniel R. Williams
  Date: 14 Feb 2024
 }
-\details{
-quick using google to get the address from any text query. Works best if the query is a mostly complete address.
-The plural version lets query be a list of strings. Internally reduce to unique queries and then re expand to same lenth as query for return.
-}
