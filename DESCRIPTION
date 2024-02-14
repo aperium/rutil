@@ -14,6 +14,5 @@ Imports:
   tibble,
   magrittr,
   chromote, 
-  foreach,
-  rlang (>= 1.1.0)
+  foreach
 LazyData: TRUE

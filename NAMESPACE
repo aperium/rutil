@@ -1,2 +1,4 @@
 importFrom("stats", "filter", "var")
+importFrom("magrittr", `%>%`)
+importFrom("foreach", `%do%`)
 export(google_get_addresses, google_get_address)
