@@ -13,8 +13,13 @@
 #' The plural version lets query be a list of strings. Internally reduce to unique queries and then re expand to same lenth as query for return.
 #' 
 #' @keywords scrape google address lookup validate zip
-#' @param query A string or character vector containing the address to validate or complete
+#' @param query A string or character vector containing the address or addresses to validate or complete
+#' @returns A character vector containing the results in the same order as the query
+#' @title Google validation of addresses
+#' @docType package
 #'
+
+
 
 google_get_address <- function(query = NULL) {
   query <- query |> stringr::str_replace_all("[:space:]","*")
