@@ -30,7 +30,7 @@ google_get_addresses <- function(query) {
     tibble::tibble_row(query=uniquery[i],result=x)
   } |>
     dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query"), by = dplyr::join_by(query)) |>
-    pull::pull(result)
+    dplyr::pull(result)
   b$close()
   return(results)
 }
