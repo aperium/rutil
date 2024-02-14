@@ -1,13 +1,19 @@
 Package: rutil
-Type: Package
 Title: Functions that make my life easier
 Version: 0.1.0
 Authors@R: person("Daniel R", "Williams", email = "aperium@gmail.com", role = c("aut", "cre"))
 Author: Daniel R Williams [aut, cre]
 Maintainer: Daniel R Williams <danrwill@me.com>
-Depends: R (>= 4.3.2)
 Description: Collection of functions for my personal use. Avalible if anyone else wants to build on them for their own use. 
-License: GPL3
-LazyData: TRUE
-Imports: tidyverse, chromote, foreach
 URL: https://github.com/aperium/rutil
+License: GPL (>= 3) + file LICENSE
+Depends: R (>= 4.3.2)
+Imports: 
+  strinr,
+  dplyr,
+  tibble,
+  magrittr,
+  chromote, 
+  foreach,
+  rlang (>= 1.1.0)
+LazyData: TRUE

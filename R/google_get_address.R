@@ -5,7 +5,6 @@
 #'
 #' 
 
-
 #' quick using google to get the address from any text query. Works best if the query is a mostly complete address.
 #' The plural version lets query be a list of strings. Internally reduce to unique queries and then re expand to same lenth as query for return.
 google_get_address <- function(query) {
