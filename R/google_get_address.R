@@ -4,7 +4,7 @@
 #'  Date: 14 Feb 2024
 #'
 #' 
-cran_packs <- c("rvest","stringr","chromote", "dplyr", "foreach", "tibble", "magrittr")
+## cran_packs <- c("rvest","stringr","chromote", "dplyr", "foreach", "tibble", "magrittr")
 
 
 
