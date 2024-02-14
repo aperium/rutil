@@ -1,0 +1,9 @@
+Package: rutil
+Type: Package
+Title: Functions that make my life easier
+Version: 0.1.0
+Authors@R: person("Daniel R", "Williams", email = "aperium@gmail.com", role = c("aut", "cre"))
+Description: Collection of functions for my personal use. Avalible if anyone else wants to build on them for their own use. 
+License: GPL3
+LazyData: TRUE
+Imports: 
