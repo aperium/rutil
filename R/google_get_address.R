@@ -5,6 +5,8 @@
 #'
 #' 
 
+
+
 #' quick using google to get the address from any text query. Works best if the query is a mostly complete address.
 #' The plural version lets query be a list of strings. Internally reduce to unique queries and then re expand to same lenth as query for return.
 google_get_address <- function(query) {
@@ -30,7 +32,7 @@ google_get_addresses <- function(query) {
     tibble::tibble_row(query=uniquery[i],result=x)
   } |>
     dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query"), by = dplyr::join_by(query)) |>
-    dplyr::pull(result)
+    dplyr::pull(.data$result)
   b$close()
   return(results)
 }
