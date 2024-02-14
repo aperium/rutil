@@ -7,7 +7,7 @@ Maintainer: Daniel R Williams <danrwill@me.com>
 Description: Collection of functions for my personal use. Avalible if anyone else wants to build on them for their own use. 
 URL: https://github.com/aperium/rutil
 License: GPL (>= 3) + file LICENSE
-Depends: R (>= 4.3.2)
+Depends: R (>= 4.3)
 Imports: 
   stringr,
   dplyr,
