@@ -9,13 +9,17 @@
 #' @importFrom rlang is_null
 #' @export 
 #' @description
+#' This aims to provide a common interface for all three main XLSX reading functions. It defaults to this order, choosing the first available:
+#' 1. readxl::read_xlsx()
+#' 2. openxlsx::read.xlsx()
+#' 3. xlsx::read.xlsx()
 #' 
-#' 
-#' 
-#' @keywords xlsx read
-#' @param path path to the file to read as character vector
-#' 
-#' @returns 
+#' @keywords xlsx read 
+#' @param path path to the file to read as character vector.
+#' @param sheet the workbook sheet as an index number or name of the sheet.
+#' @param range A cell range to read. Only implemented for readxl::read_xlsx().
+#' @param col_names Binary indicator to use thte first row as column names.  
+#' @returns A data.frame or tibble
 #' @title XLSX Flex Read
 #' @docType package
 #'
