@@ -21,8 +21,8 @@ The plural version lets query be a list of strings. Internally reduce to unique 
 \details{
 Google Get Address
 
- Author: Daniel R. Williams
- Date: 14 Feb 2024
+Author: Daniel R. Williams
+Date: 14 Feb 2024
 }
 \keyword{address}
 \keyword{google}

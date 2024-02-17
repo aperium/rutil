@@ -1,11 +1,11 @@
 #' XLSX Flex Read
 #'
-#'  Author: Daniel R. Williams
-#'  Date: 16 Feb 2024
+#' Author: Daniel R. Williams
+#' Date: 16 Feb 2024
 #'
 #' @importFrom readxl read_xls
 #' @importFrom openxlsx read.xlsx
-#' @importFrom xlsx::read.xlsx
+#' @importFrom xlsx read.xlsx
 #' @importFrom rlang is_null
 #' @export 
 #' @description

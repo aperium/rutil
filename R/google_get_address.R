@@ -1,7 +1,7 @@
 #' Google Get Address
 #'
-#'  Author: Daniel R. Williams
-#'  Date: 14 Feb 2024
+#' Author: Daniel R. Williams
+#' Date: 14 Feb 2024
 #'
 #' @importFrom magrittr `%>%`
 #' @importFrom foreach `%do%`
