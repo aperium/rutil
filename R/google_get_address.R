@@ -26,6 +26,7 @@ google_get_address <- function(query = NULL) {
   uniquery <- query |> stringr::str_unique()
   tmp_join <- function(...) dplyr::full_join(..., by = dplyr::join_by(.data$query, .data$result))
   b <- chromote::ChromoteSession$new()
+  i<- NULL  #resolves warning at package check.
   results <- foreach::foreach(i=1:length(uniquery), .combine = tmp_join, .multicombine = FALSE) %do% {
     b$Page$navigate(paste0("https://www.google.com/search?q=",uniquery[i],"*va&sclient=gws-wiz-serp"))
     b$Page$loadEventFired()
