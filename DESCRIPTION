@@ -16,7 +16,8 @@ Imports:
   magrittr,
   chromote, 
   foreach,
-  rlang
+  rlang,
+  readxl
 LazyData: TRUE
 Encoding: UTF-8
 RoxygenNote: 7.3.1
