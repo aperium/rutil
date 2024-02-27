@@ -78,12 +78,12 @@ google_get_address_single <- function(query = NULL) {
 
 # Tests
 
-c("stats","magrittr","foreach","plyr","rlang") |>
-  sapply(require, character = TRUE)
-
-c("greenstreet gardens lothian MD",
-  "merrywood gardens",
-  "greenstreet gardens alexandria VA",
-  "this is not an address") |>
-  google_get_address()
+# c("stats","magrittr","foreach","plyr","rlang") |>
+#   sapply(require, character = TRUE)
+# 
+# c("greenstreet gardens lothian MD",
+#   "merrywood gardens",
+#   "greenstreet gardens alexandria VA",
+#   "this is not an address") |>
+#   google_get_address()
 
