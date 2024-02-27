@@ -44,7 +44,7 @@
 
 
 google_get_address <- function(query = NULL) {
-  query <- query |> stringr::str_replace_all("[:space:]","+")
+  query <- query |> unlist() |> stringr::str_replace_all("[:space:]","+")
   uniquery <- query |> stringr::str_unique()
   # tmp_join <- function(...) dplyr::full_join(..., by = dplyr::join_by(.data$query, .data$result))
   b <- chromote::ChromoteSession$new()
