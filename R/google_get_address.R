@@ -34,7 +34,7 @@ google_get_address <- function(query = NULL) {
     try(x <- b$DOM$getDocument() %>% { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } %>% { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)"), silent = TRUE)
     tibble::tibble_row(query=uniquery[i],result=x)
   } |>
-    dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query"), by = dplyr::join_by(.data$query)) |>
+    dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query")) |>  #, by = dplyr::join_by(.data$query)
     dplyr::pull(.data$result)
   b$close()
   return(results)
