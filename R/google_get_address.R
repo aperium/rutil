@@ -19,29 +19,6 @@
 #' @docType package
 #'
 
-# google_get_address <- function(query = NULL) {
-#   query <- query |> stringr::str_replace_all("[:space:]","+")
-#   uniquery <- query |> stringr::str_unique()
-#   # tmp_join <- function(...) dplyr::full_join(..., by = dplyr::join_by(.data$query, .data$result))
-#   b <- chromote::ChromoteSession$new()
-#   i<- NULL  #resolves warning at package check.
-#   pre_results <- foreach::foreach(i=1:length(uniquery), .combine = dplyr::full_join, .multicombine = FALSE) %do% {
-#     b$Page$navigate(paste0("https://www.google.com/search?q=",uniquery[i],"&sclient=gws-wiz-serp"))
-#     b$Page$loadEventFired()
-#     x<-NA
-#     try(x <- b$DOM$getDocument() %>% { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } %>% { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)"), silent = TRUE)
-#     tibble::tibble_row(query=uniquery[i],result=x)
-#   } ##|>
-#     # dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query"), by=dplyr::join_by("query"=="query")) |>  #, by = dplyr::join_by(.data$query)
-#   results <- query |>
-#     tibble::as_tibble_col(column_name = "query") |>
-#     dplyr::rowwise() %>%
-#     mutate("result" = dplyr::slice(pre_results, .data$query |> purrr::detect_index(\(x) stringr::str_equal(x, pre_results$result, ignore_case = TRUE)))$result)
-#     dplyr::pull(var = -1) 
-#   b$close()
-#   return(results)
-# }
-
 
 google_get_address <- function(query = NULL) {
   query <- query |> unlist() |> stringr::str_replace_all("[:space:]","+")
@@ -58,7 +35,7 @@ google_get_address <- function(query = NULL) {
   }
   results <- query |> 
     tibble::as_tibble_col(column_name = "query") |> 
-    dplyr::mutate(result = NULL) |>
+    dplyr::mutate(dummy = "NULL") |>
     dplyr::left_join(pre_results) |>  #, by = dplyr::join_by(.data$query)
     # dplyr::pull("result")  ## I think this is the error now... change to df[result]
     as.data.frame()
