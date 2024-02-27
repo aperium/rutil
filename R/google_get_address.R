@@ -60,9 +60,10 @@ google_get_address <- function(query = NULL) {
     tibble::as_tibble_col(column_name = "query") |> 
     # dplyr::mutate(result = NULL) |>
     dplyr::left_join(pre_results) |>  #, by = dplyr::join_by(.data$query)
-    dplyr::pull("result")  ## I think this is the error now... change to df[result]
+    # dplyr::pull("result")  ## I think this is the error now... change to df[result]
+    as.data.frame()
   b$close()
-  return(results[])
+  return(results[["result"]])
 }
 
 google_get_address_single <- function(query = NULL) {
@@ -77,12 +78,12 @@ google_get_address_single <- function(query = NULL) {
 
 # Tests
 
-# c("stats","magrittr","foreach","plyr","rlang") |>
-#   sapply(require, character = TRUE)
-# 
-# c("greenstreet gardens lothian MD",
-#   "merrywood gardens",
-#   "greenstreet gardens alexandria VA",
-#   "this is not an address") |>
-#   google_get_address()
+c("stats","magrittr","foreach","plyr","rlang") |>
+  sapply(require, character = TRUE)
+
+c("greenstreet gardens lothian MD",
+  "merrywood gardens",
+  "greenstreet gardens alexandria VA",
+  "this is not an address") |>
+  google_get_address()
 
