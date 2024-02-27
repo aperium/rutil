@@ -49,15 +49,18 @@ google_get_address <- function(query = NULL) {
   # tmp_join <- function(...) dplyr::full_join(..., by = dplyr::join_by(.data$query, .data$result))
   b <- chromote::ChromoteSession$new()
   i<- NULL  #resolves warning at package check.
-  results <- foreach::foreach(i=1:length(uniquery), .combine = rbind, .multicombine = FALSE) %do% {
+  pre_results <- foreach::foreach(i=1:length(uniquery), .combine = rbind, .multicombine = FALSE) %do% {
     b$Page$navigate(paste0("https://www.google.com/search?q=",uniquery[i],"&sclient=gws-wiz-serp"))
     b$Page$loadEventFired()
     x<-NA
     try(x <- b$DOM$getDocument() %>% { b$DOM$querySelector(.$root$nodeId, ".LrzXr") } %>% { b$DOM$getOuterHTML(.$nodeId) } |> unlist() |> stringr::str_trim() |> stringr::str_remove_all("(<.*>(?=[^$]))|((?<=[^^])<.*>)"), silent = TRUE)
     tibble::tibble_row(query=uniquery[i],result=x)
-  } |>
-    dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query") |> dplyr::mutate(result = NULL), by=dplyr::join_by("query"=="query")) |>  #, by = dplyr::join_by(.data$query)
-    dplyr::pull(var = -1)  ## I think this is the error now... change to df[result]
+  }
+  results <- query |> 
+    tibble::as_tibble_col(column_name = "query") |> 
+    dplyr::mutate(result = NULL) |>
+    dplyr::left_join(pre_results) |>  #, by = dplyr::join_by(.data$query)
+    dplyr::pull("result")  ## I think this is the error now... change to df[result]
   b$close()
   return(results)
 }
@@ -74,12 +77,12 @@ google_get_address_single <- function(query = NULL) {
 
 # Tests
 
-c("stats","magrittr","foreach","plyr","rlang") |>
-  sapply(require, character = TRUE)
-
-c("greenstreet gardens lothian MD",
-  "merrywood gardens",
-  "greenstreet gardens alexandria VA",
-  "this is not an address") |>
-  google_get_address()
+# c("stats","magrittr","foreach","plyr","rlang") |>
+#   sapply(require, character = TRUE)
+# 
+# c("greenstreet gardens lothian MD",
+#   "merrywood gardens",
+#   "greenstreet gardens alexandria VA",
+#   "this is not an address") |>
+#   google_get_address()
 
