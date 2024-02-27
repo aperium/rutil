@@ -21,6 +21,8 @@
 
 
 google_get_address <- function(query = NULL) {
+  c("stats","magrittr","foreach","plyr","rlang") |>
+    sapply(require, character = TRUE)
   query <- query |> unlist() |> stringr::str_replace_all("[:space:]","+")
   uniquery <- query |> stringr::str_unique()
   # tmp_join <- function(...) dplyr::full_join(..., by = dplyr::join_by(.data$query, .data$result))
