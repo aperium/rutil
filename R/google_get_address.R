@@ -35,7 +35,7 @@ google_get_address <- function(query = NULL) {
     tibble::tibble_row(query=uniquery[i],result=x)
   } |>
     dplyr::right_join(query |> tibble::as_tibble_col(column_name = "query")) |>  #, by = dplyr::join_by(.data$query)
-    dplyr::pull(.data$result)
+    dplyr::pull(`result`)  ## I think this is the error now... change to df[result]
   b$close()
   return(results)
 }
