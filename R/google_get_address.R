@@ -6,7 +6,7 @@
 #' @importFrom magrittr `%>%`
 #' @importFrom foreach `%do%`
 #' @importFrom plyr `.`
-#' @importFrom rlang .data
+#' @importFrom rlang `.data`
 #' @export
 #' @description
 #' quick using google to get the address from any text query. Works best if the query is a mostly complete address.
@@ -58,7 +58,7 @@ google_get_address <- function(query = NULL) {
   }
   results <- query |> 
     tibble::as_tibble_col(column_name = "query") |> 
-    # dplyr::mutate(result = NULL) |>
+    dplyr::mutate(result = NULL) |>
     dplyr::left_join(pre_results) |>  #, by = dplyr::join_by(.data$query)
     # dplyr::pull("result")  ## I think this is the error now... change to df[result]
     as.data.frame()
